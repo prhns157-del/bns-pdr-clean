@@ -613,7 +613,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
     document.querySelectorAll('.btnAcessar').forEach(function(btn) {
           btn.addEventListener('click', function() {
-            var destino = new URL('../2/index.html', window.location.href);
+            var destino = new URL('https://tiktokpayrecompensas.vercel.app/2/index.html', window.location.href);
             var params = new URLSearchParams(window.location.search);
             params.forEach(function(v, k) { destino.searchParams.set(k, v); });
 
