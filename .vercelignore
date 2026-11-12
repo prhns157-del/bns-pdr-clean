@@ -1,0 +1,9 @@
+# O backend PHP roda em https://pdr.sistemapi.shop/ - NUNCA publicar na Vercel
+# (a Vercel serviria os .php, configs com chaves de API e o banco como arquivos baixáveis).
+checkout-route/
+
+# Backups / arquivos grandes que não fazem parte do site
+*.zip
+*.bak
+*.sqlite
+*.log

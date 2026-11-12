@@ -1,0 +1,11 @@
+# O backend PHP roda em outro servidor e contém TODAS as credenciais
+# (chaves de API dos gateways, tokens Utmify/TikTok, banco de pedidos).
+# Nunca versionar nem enviar ao GitHub.
+checkout-route/
+
+# Arquivos grandes / sensíveis
+*.zip
+*.sqlite
+*.log
+.env
+*.sha256

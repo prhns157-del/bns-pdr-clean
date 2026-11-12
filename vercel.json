@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/checkout-route/pagamento-router.php",
+      "destination": "https://pdr.sistemapi.shop/checkout-route/pagamento-router.php"
+    },
+    {
+      "source": "/checkout-route/verificar.php",
+      "destination": "https://pdr.sistemapi.shop/checkout-route/verificar.php"
+    },
+    {
+      "source": "/checkout-route/track-event.php",
+      "destination": "https://pdr.sistemapi.shop/checkout-route/track-event.php"
+    }
+  ]
+}

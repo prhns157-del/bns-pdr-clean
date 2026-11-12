@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <title>TikTok - Carteira Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+        body { font-family: 'Inter', sans-serif; letter-spacing: -0.02em; background-color: #f1f1f3; }
+
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .card-soft { box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 4px 16px rgba(16,24,40,.05); }
+
+        .btn-tiktok { background-color: #FE2C55; transition: all .2s ease; }
+        .btn-tiktok:hover { background-color: #e61e4d; }
+        .btn-tiktok:active { transform: scale(.985); }
+
+        .input-field { background: #fff; border: 1px solid #e5e7eb; color: #161823; transition: border .2s ease; }
+        .input-field:focus { outline: none; border-color: #161823; }
+
+        .modal-overlay { background: rgba(0,0,0,.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+        .balance-card { background: radial-gradient(120% 90% at 88% 8%, rgba(254,44,85,.28), transparent 46%), #0a0a0d; }
+
+        /* TikTok logo mark */
+        .tt-note { width: 26px; height: 26px; overflow: visible; }
+        .tt-note .cyan { fill: #25F4EE; }
+        .tt-note .red  { fill: #FE2C55; }
+        .tt-note .dark { fill: #161823; }
+        .icon { stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+</head>
+<body class="text-[#161823]">
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center px-5 fade-in">
+        <div class="w-full max-w-sm bg-white rounded-3xl p-8 card-soft">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <svg class="tt-note" viewBox="0 0 448 512">
+                    <path class="cyan" transform="translate(-14,14)" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                    <path class="red" transform="translate(14,-8)" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                    <path class="dark" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                </svg>
+                <span class="text-2xl font-black text-gray-900">TikTok</span>
+            </div>
+            <p class="text-center text-gray-500 text-sm font-semibold mb-8">Acesso à Carteira Digital</p>
+
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wider">Email</label>
+                    <input type="email" id="emailInput" placeholder="seu@email.com"
+                        class="input-field w-full px-4 py-3 rounded-xl text-sm" required>
+                </div>
+                <button type="submit"
+                    class="btn-tiktok w-full py-3.5 rounded-xl font-bold text-white tracking-wide text-sm mt-6">
+                    Entrar
+                </button>
+                <p class="flex items-center justify-center gap-1.5 text-xs text-gray-400 mt-4">
+                    <svg class="icon w-3.5 h-3.5" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                    Seus dados estão protegidos
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- WALLET SCREEN -->
+    <div id="walletScreen" class="hidden min-h-screen pb-24">
+        <div class="max-w-md mx-auto bg-[#f1f1f3] min-h-screen">
+
+            <!-- Header -->
+            <div class="bg-white px-5 pt-5 pb-4">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center gap-2">
+                        <svg class="tt-note" viewBox="0 0 448 512">
+                            <path class="cyan" transform="translate(-14,14)" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                            <path class="red" transform="translate(14,-8)" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                            <path class="dark" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                        </svg>
+                        <span class="text-lg font-black text-gray-900">TikTok</span>
+                    </div>
+                    <button class="relative w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-700">
+                        <svg class="icon w-5 h-5" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        <span class="absolute top-1.5 right-2 w-2 h-2 bg-[#FE2C55] rounded-full"></span>
+                    </button>
+                </div>
+                <p class="text-xs text-gray-400 font-medium">Bem-vindo de volta</p>
+                <p id="displayEmail" class="text-base font-bold text-gray-900"></p>
+            </div>
+
+            <div class="px-5 py-5 space-y-5">
+
+                <!-- Red Alert -->
+                <div class="bg-[#fde8ea] border border-[#f5b5bd] rounded-2xl p-4 flex gap-3">
+                    <svg class="icon w-6 h-6 text-[#d81b3f] flex-shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4M12 17h.01"/></svg>
+                    <div class="text-[13px] leading-relaxed text-[#9c1b31]">
+                        <p class="font-black text-[#d81b3f] mb-0.5 uppercase tracking-wide text-xs">Comunicado Importante</p>
+                        Em decorrência de instabilidades no sistema do Banco Central, os prazos de verificação de contas e liberação de saques podem sofrer atrasos temporários. Nossa equipe segue trabalhando para concluir a análise no menor tempo possível e agradece a sua compreensão.
+                    </div>
+                </div>
+
+                <!-- Balance Card -->
+                <div class="balance-card text-white rounded-3xl p-6 card-soft">
+                    <div class="flex items-start justify-between mb-5">
+                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em]">Saldo Disponível</p>
+                        <svg class="icon w-5 h-5 text-gray-500" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <p class="text-[40px] leading-none font-black mb-1.5"><span id="balanceDisplay">R$ 0,00</span></p>
+                    <p class="text-xs text-gray-500 font-medium mb-5">Disponível para saque</p>
+
+                    <div class="space-y-2.5 pb-5 border-b border-white/10">
+                        <div class="flex justify-between text-[13px]"><span class="text-gray-400">Saldo total</span><span class="font-semibold" id="totalBalance">R$ 0,00</span></div>
+                        <div class="flex justify-between text-[13px]"><span class="text-gray-400">Em retenção</span><span class="font-semibold text-gray-400">R$ 0,00</span></div>
+                    </div>
+
+                    <div class="flex items-center gap-2.5 mt-4 bg-[#2a1116] border border-[#4a1b24] rounded-2xl px-4 py-3">
+                        <span class="w-2 h-2 bg-[#FE2C55] rounded-full flex-shrink-0"></span>
+                        <p class="text-[13px] font-semibold text-[#ffb3c1] flex-1 leading-tight">Saldo bloqueado — envio de documentos necessário</p>
+                        <svg class="icon w-4 h-4 text-gray-500 flex-shrink-0" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    </div>
+                </div>
+
+                <!-- Cream Banner -->
+                <div id="yellowBanner" class="bg-[#fdf6e3] rounded-2xl p-4 flex gap-3">
+                    <div class="w-9 h-9 rounded-full bg-[#f5e6b8] flex items-center justify-center flex-shrink-0">
+                        <svg class="icon w-5 h-5 text-[#9a7b1f]" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    </div>
+                    <div class="text-[13px] leading-relaxed text-[#7a6420]">
+                        <p class="font-bold text-[#5c4a12] mb-0.5">Documentos necessários para sacar</p>
+                        Após o envio, a equipe oficial valida seus documentos em
+                        <span class="font-bold">até 3 dias úteis</span>. O saque é liberado somente após a aprovação.
+                    </div>
+                </div>
+
+                <!-- Bank Analysis -->
+                <div class="flex items-center justify-between px-1 pt-1">
+                    <h2 class="text-lg font-black text-gray-900">Análise Bancária</h2>
+                    <span class="bg-[#fdf0d0] text-[#9a7b1f] text-xs font-bold px-3 py-1.5 rounded-full">Pendente</span>
+                </div>
+
+                <!-- Documents Card -->
+                <div class="bg-white rounded-2xl p-5 card-soft">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#ffe9ee] flex items-center justify-center flex-shrink-0">
+                            <svg class="icon w-6 h-6 text-[#FE2C55]" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-gray-900 mb-1">Documentos necessários</p>
+                            <p class="text-[13px] text-gray-500 leading-relaxed">
+                                Envie seus documentos para iniciar a validação oficial. A equipe analisa em até 3 dias úteis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <div id="docButtonContainer">
+                    <button onclick="openDocumentModal()"
+                        class="btn-tiktok w-full py-4 rounded-2xl font-bold text-white flex items-center justify-center gap-2.5">
+                        <svg class="icon w-5 h-5 text-white" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg>
+                        Enviar documentos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATUS SCREEN -->
+    <div id="statusScreen" class="hidden min-h-screen pb-24">
+        <div class="max-w-md mx-auto bg-[#f1f1f3] min-h-screen">
+            <div class="bg-white px-5 pt-5 pb-4">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg class="tt-note" viewBox="0 0 448 512">
+                        <path class="cyan" transform="translate(-14,14)" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                        <path class="red" transform="translate(14,-8)" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                        <path class="dark" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+                    </svg>
+                    <span class="text-lg font-black text-gray-900">TikTok</span>
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
+                    <h2 class="text-lg font-black text-gray-900">Status da Verificação</h2>
+                    <span class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
+                        Em tempo real
+                    </span>
+                </div>
+                <p class="text-xs text-gray-500">Acompanhe o progresso da sua análise</p>
+            </div>
+
+            <div class="px-5 py-4 space-y-3">
+                <!-- Status Card -->
+                <div class="bg-white rounded-2xl p-4 card-soft">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="bg-[#fdf0d0] text-[#9a7b1f] text-[11px] font-bold px-2.5 py-1 rounded-full">PENDENTE</span>
+                        <span class="text-xs text-gray-400 font-bold" id="statusProgress">0%</span>
+                    </div>
+                    <h3 class="text-base font-bold text-gray-900 mb-1">Documentos necessários</h3>
+                    <p class="text-[13px] text-gray-500 mb-3 leading-relaxed">Envie seus documentos para iniciar a validação. A equipe revisa em até 3 dias úteis.</p>
+                    <div class="bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                        <div id="progressBar" class="bg-[#FE2C55] h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="bg-white rounded-2xl p-4 card-soft">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-3">Etapas</p>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div id="step1Circle" class="w-7 h-7 rounded-full bg-[#FE2C55] text-white flex items-center justify-center font-bold text-xs transition-colors duration-300">1</div>
+                            <div id="step1Line" class="w-0.5 flex-1 min-h-[18px] bg-gray-200 my-1 transition-colors duration-300"></div>
+                        </div>
+                        <div class="pb-4 flex-1">
+                            <p id="step1Title" class="text-sm font-bold text-gray-900 leading-tight">Envio de documentos</p>
+                            <p id="step1Subtitle" class="text-xs text-[#FE2C55] font-semibold">Aguardando documentos</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div id="step2Circle" class="w-7 h-7 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-bold text-xs transition-colors duration-300">2</div>
+                            <div id="step2Line" class="w-0.5 flex-1 min-h-[18px] bg-gray-200 my-1 transition-colors duration-300"></div>
+                        </div>
+                        <div class="pb-4 flex-1">
+                            <p id="step2Title" class="text-sm font-bold text-gray-500 leading-tight transition-colors duration-300">Em análise</p>
+                            <p id="step2Subtitle" class="text-xs text-gray-400 transition-colors duration-300">Análise da equipe oficial</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div id="step3Circle" class="w-7 h-7 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-bold text-xs">3</div>
+                        </div>
+                        <div class="flex-1">
+                            <p id="step3Title" class="text-sm font-bold text-gray-500 leading-tight">Concluído</p>
+                            <p id="step3Subtitle" class="text-xs text-gray-400">Resultado final</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status History -->
+                <div class="bg-white rounded-2xl p-4 card-soft flex items-center gap-2.5">
+                    <svg class="icon w-4 h-4 text-gray-300 flex-shrink-0" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                    <p id="statusHistory" class="text-xs text-gray-500 leading-relaxed">Nenhuma mudança ainda. Envie seus documentos para começar.</p>
+                </div>
+
+                <!-- CTA Button -->
+                <button id="statusDocButton" onclick="openDocumentModal()" class="btn-tiktok w-full py-4 rounded-2xl font-bold text-white flex items-center justify-center gap-2.5">
+                    <svg class="icon w-5 h-5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg>
+                    Enviar documentos
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOCUMENT UPLOAD MODAL -->
+    <div id="documentModal" class="hidden fixed inset-0 modal-overlay z-50 flex items-end">
+        <div class="w-full bg-[#f1f1f3] rounded-t-3xl max-w-md mx-auto max-h-[88vh] overflow-y-auto">
+            <div class="sticky top-0 bg-[#f1f1f3] px-6 pt-5 pb-4 flex items-center justify-between z-10 border-b border-gray-200">
+                <div>
+                    <h2 class="text-lg font-black text-gray-900">Enviar Documentos</h2>
+                    <p class="text-xs text-gray-500 font-medium">Comprovação de identidade</p>
+                </div>
+                <button onclick="closeDocumentModal()" class="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-gray-600 transition">
+                    <svg class="icon w-4 h-4" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="px-5 pb-6 space-y-3">
+                <p class="text-[13px] text-gray-600 leading-relaxed px-1 pb-1 font-medium">
+                    Envie os documentos solicitados para completar a validação de sua conta e liberar o acesso aos saques.
+                </p>
+
+                <div class="bg-white rounded-2xl p-4 card-soft">
+                    <div class="flex items-start gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#eef4ff] flex items-center justify-center flex-shrink-0">
+                            <svg class="icon w-5 h-5 text-[#3b6cf6]" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 10h3M15 14H6"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-sm text-gray-900">Documento de Identidade</p>
+                            <p class="text-xs text-gray-500">RG, CNH ou Passaporte (frente e verso)</p>
+                        </div>
+                    </div>
+                    <div id="idStatus" class="hidden mb-3 p-2.5 bg-green-50 border border-green-200 rounded-xl flex items-center gap-2">
+                        <svg class="icon w-4 h-4 text-green-600" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                        <span id="idFileName" class="text-xs font-semibold text-green-700"></span>
+                    </div>
+                    <div class="flex gap-2">
+                        <label class="flex-1 text-xs bg-[#3b6cf6] text-white py-3 rounded-xl hover:bg-[#2a52d9] font-bold cursor-pointer transition flex items-center justify-center">
+                            + Frente
+                            <input type="file" id="idFront" accept="image/*,application/pdf" class="hidden" onchange="handleFileUpload(this, 'idFront')">
+                        </label>
+                        <label class="flex-1 text-xs bg-[#3b6cf6] text-white py-3 rounded-xl hover:bg-[#2a52d9] font-bold cursor-pointer transition flex items-center justify-center">
+                            + Verso
+                            <input type="file" id="idBack" accept="image/*,application/pdf" class="hidden" onchange="handleFileUpload(this, 'idBack')">
+                        </label>
+                    </div>
+                </div>
+
+<div class="bg-white rounded-2xl p-4 card-soft">
+                    <div class="flex items-start gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#e6f9ef] flex items-center justify-center flex-shrink-0">
+                            <svg class="icon w-5 h-5 text-[#1aa366]" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-sm text-gray-900">Selfie com Documento</p>
+                            <p class="text-xs text-gray-500">Validação de identidade em tempo real</p>
+                        </div>
+                    </div>
+                    <div id="selfieStatus" class="hidden mb-3 p-2.5 bg-green-50 border border-green-200 rounded-xl flex items-center gap-2">
+                        <svg class="icon w-4 h-4 text-green-600" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                        <span id="selfieFileName" class="text-xs font-semibold text-green-700"></span>
+                    </div>
+                    <label class="w-full text-xs bg-[#1aa366] text-white py-2.5 rounded-xl hover:bg-[#138a59] font-semibold cursor-pointer transition block text-center">
+                        + Enviar foto
+                        <input type="file" id="selfie" accept="image/*" class="hidden" onchange="handleFileUpload(this, 'selfie')">
+                    </label>
+                </div>
+
+                <div class="bg-[#eef4ff] rounded-2xl p-4 flex gap-3">
+                    <svg class="icon w-5 h-5 text-[#3b6cf6] flex-shrink-0 mt-0.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <div class="text-xs text-[#30509c] leading-relaxed">
+                        <p class="font-bold mb-1">⏱️ Tempo de análise</p>
+                        <p>Sua documentação será analisada em até 3 dias úteis. Você receberá uma notificação ao ser aprovado e o seu saque será liberado automaticamente.</p>
+                    </div>
+                </div>
+
+                <button onclick="submitDocuments()" id="submitBtn"
+                    class="btn-tiktok w-full py-3.5 rounded-2xl font-bold text-white mt-4 transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Confirmar envio dos documentos
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HELP CHAT MODAL -->
+    <div id="helpModal" class="hidden fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
+        <div class="w-full max-w-md mx-auto bg-[#f1f1f3] rounded-3xl h-[82vh] flex flex-col overflow-hidden shadow-2xl">
+            <div class="bg-[#FE2C55] px-5 pt-5 pb-4 flex items-center gap-3 flex-shrink-0">
+                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <svg class="icon w-5 h-5 text-white" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="font-bold text-white leading-tight">Central de Ajuda</p>
+                    <p class="text-xs text-white/80 flex items-center gap-1.5 mt-0.5">
+                        <span class="w-1.5 h-1.5 bg-green-300 rounded-full"></span>
+                        Online — resposta automática
+                    </p>
+                </div>
+                <button onclick="clearHelpChat()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition flex-shrink-0">
+                    <svg class="icon w-4 h-4" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
+                </button>
+                <button onclick="closeHelpModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition flex-shrink-0">
+                    <svg class="icon w-4 h-4" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div id="helpMessages" class="flex-1 overflow-y-auto px-5 py-4 space-y-3"></div>
+
+            <div id="helpQuickReplies" class="px-5 pb-3 pt-3 flex flex-col gap-2 flex-shrink-0 bg-white border-t border-gray-100 max-h-44 overflow-y-auto"></div>
+
+            <div class="px-5 py-3 bg-white border-t border-gray-100 flex items-center gap-2 flex-shrink-0">
+                <input id="helpInput" type="text" placeholder="Digite sua pergunta..."
+                    class="input-field flex-1 rounded-full px-4 py-2.5 text-sm" onkeydown="if(event.key==='Enter') sendHelpMessage()">
+                <button onclick="sendHelpMessage()" class="btn-tiktok w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="icon w-4 h-4 text-white" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <div id="bottomNav" class="hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 max-w-md mx-auto">
+        <div class="flex items-center justify-around px-2 py-2.5">
+            <button onclick="showScreen('wallet')" class="flex flex-col items-center gap-1 px-4 py-1 text-[#FE2C55] nav-btn" id="navHome">
+                <svg class="icon w-6 h-6" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/></svg>
+                <span class="text-[11px] font-bold">Início</span>
+            </button>
+            <button onclick="showScreen('status')" class="flex flex-col items-center gap-1 px-4 py-1 text-gray-400 nav-btn" id="navStatus">
+                <svg class="icon w-6 h-6" viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+                <span class="text-[11px] font-semibold">Status</span>
+            </button>
+            <button onclick="openHelpModal()" class="flex flex-col items-center gap-1 px-4 py-1 text-gray-400">
+                <svg class="icon w-6 h-6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                <span class="text-[11px] font-semibold">Ajuda</span>
+            </button>
+            <button onclick="logout()" class="flex flex-col items-center gap-1 px-4 py-1 text-gray-400">
+                <svg class="icon w-6 h-6" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+                <span class="text-[11px] font-semibold">Sair</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const loginScreen = document.getElementById('loginScreen');
+        const walletScreen = document.getElementById('walletScreen');
+        const bottomNav = document.getElementById('bottomNav');
+        const loginForm = document.getElementById('loginForm');
+        const documentModal = document.getElementById('documentModal');
+
+        let uploadedFiles = {
+            idFront: null,
+            idBack: null,
+            selfie: null
+        };
+
+        let balanceData = {
+            baseValue: 868.75,
+            upsellValue: 0,
+            get total() { return this.baseValue + this.upsellValue; }
+        };
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+        }
+
+        function updateBalance() {
+            const display = document.getElementById('balanceDisplay');
+            const total = document.getElementById('totalBalance');
+            if (display) display.textContent = formatCurrency(balanceData.total);
+            if (total) total.textContent = formatCurrency(balanceData.total);
+        }
+
+        function initializeBalance(baseValue, upsellValue = 0) {
+            balanceData.baseValue = baseValue;
+            balanceData.upsellValue = upsellValue;
+            updateBalance();
+            localStorage.setItem('balanceData', JSON.stringify(balanceData));
+        }
+
+        function addUpsellValue(value) {
+            balanceData.upsellValue += value;
+            updateBalance();
+            localStorage.setItem('balanceData', JSON.stringify(balanceData));
+        }
+
+        function getBalanceFromSource() {
+            const params = new URLSearchParams(window.location.search);
+            const urlAmount = params.get('amount');
+            if (urlAmount) {
+                return parseInt(urlAmount);
+            }
+            const stored = localStorage.getItem('leadAmount');
+            if (stored) {
+                return parseInt(stored);
+            }
+            return 0;
+        }
+
+        function loadBalanceFromStorage() {
+            const stored = localStorage.getItem('balanceData');
+            if (stored) {
+                const data = JSON.parse(stored);
+                balanceData.baseValue = data.baseValue;
+                balanceData.upsellValue = data.upsellValue;
+            } else {
+                const baseValue = getBalanceFromSource();
+                if (baseValue > 0) {
+                    balanceData.baseValue = baseValue;
+                }
+            }
+            updateBalance();
+        }
+
+        function loadPersistedLogin() {
+            const savedEmail = localStorage.getItem('userEmail');
+            if (savedEmail) {
+                document.getElementById('emailInput').value = savedEmail;
+                loginForm.dispatchEvent(new Event('submit'));
+            }
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            localStorage.setItem('userEmail', email);
+            loginScreen.style.animation = 'fadeOut 0.4s ease-out forwards';
+            setTimeout(() => {
+                loginScreen.classList.add('hidden');
+                showScreen('wallet');
+                walletScreen.classList.add('fade-in');
+                bottomNav.classList.remove('hidden');
+                document.getElementById('displayEmail').textContent = email;
+                loadBalanceFromStorage();
+                updateBalance();
+                checkDocumentStatus();
+            }, 250);
+        });
+
+        function checkDocumentStatus() {
+            const docsStatus = localStorage.getItem('documentsUploaded');
+            if (docsStatus) {
+                const data = JSON.parse(docsStatus);
+                updateDocumentStatusUI(data);
+            }
+        }
+
+        function updateDocumentStatusUI(data) {
+            const container = document.getElementById('docButtonContainer');
+            const yellowBanner = document.getElementById('yellowBanner');
+
+            if (yellowBanner) {
+                yellowBanner.className = 'bg-green-50 border border-green-200 rounded-2xl p-4 flex gap-3';
+                yellowBanner.innerHTML = `
+                    <svg class="icon w-7 h-7 text-green-600 flex-shrink-0" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                    <div class="flex-1">
+                        <p class="font-bold text-green-900 text-sm">Documentos enviados!</p>
+                        <p class="text-xs text-green-700 mt-1.5">Sua solicitação está em análise. Você será notificado quando for aprovada.</p>
+                        <p class="text-xs text-green-600 mt-1.5">Enviado em: ${new Date(data.submittedAt).toLocaleString('pt-BR')}</p>
+                    </div>
+                    <button onclick="showScreen('status')" class="text-green-600 hover:text-green-700 font-bold text-sm flex-shrink-0">Ver</button>
+                `;
+            }
+
+            if (container) {
+                container.classList.add('hidden');
+            }
+
+            const statusDocButton = document.getElementById('statusDocButton');
+            if (statusDocButton) {
+                statusDocButton.classList.add('hidden');
+            }
+        }
+
+        function showDocumentConfirmation(data) {
+            const modalContent = document.querySelector('#documentModal > div');
+
+            modalContent.innerHTML = `
+                <div class="sticky top-0 bg-[#f1f1f3] px-6 pt-5 pb-4 flex items-center justify-between z-10 border-b border-gray-200">
+                    <div>
+                        <h2 class="text-lg font-black text-gray-900">Documentos Enviados</h2>
+                        <p class="text-xs text-gray-500 font-medium">Status: Em análise</p>
+                    </div>
+                    <button onclick="closeDocumentModal()" class="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-gray-600 transition">
+                        <svg class="icon w-4 h-4" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="px-5 pb-6 space-y-4">
+                    <div class="bg-green-50 border border-green-200 rounded-2xl p-4 flex gap-3">
+                        <svg class="icon w-6 h-6 text-green-600 flex-shrink-0" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        <div>
+                            <p class="font-bold text-green-900">Documentos recebidos com sucesso!</p>
+                            <p class="text-sm text-green-700 mt-1">Sua solicitação foi registrada. A equipe analisará em até 3 dias úteis.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-2xl p-4 space-y-2">
+                        <p class="text-sm font-bold text-gray-900">Documentos enviados:</p>
+                        <p class="text-xs text-gray-600">✓ Documento de Identidade (Frente)</p>
+                        <p class="text-xs text-gray-600">✓ Documento de Identidade (Verso)</p>
+                        <p class="text-xs text-gray-600">✓ Selfie com Documento</p>
+                        <p class="text-xs text-gray-500 mt-3">Enviado em: ${new Date(data.submittedAt).toLocaleString('pt-BR')}</p>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-2xl p-4 flex gap-3">
+                        <svg class="icon w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <p class="text-xs text-blue-900">Você será notificado quando a análise for concluída e o saque for liberado.</p>
+                    </div>
+
+                    <button onclick="closeDocumentModal()" class="w-full bg-gray-900 text-white py-3.5 rounded-2xl font-bold mt-4">
+                        Fechar
+                    </button>
+                </div>
+            `;
+        }
+
+        function openDocumentModal() {
+            const docsStatus = localStorage.getItem('documentsUploaded');
+            if (docsStatus) {
+                documentModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                const data = JSON.parse(docsStatus);
+                showDocumentConfirmation(data);
+            } else {
+                documentModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeDocumentModal() {
+            documentModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleFileUpload(input, fieldName) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const maxSize = 10 * 1024 * 1024;
+
+                if (file.size > maxSize) {
+                    alert('Arquivo muito grande. Máximo de 10MB.');
+                    return;
+                }
+
+                uploadedFiles[fieldName] = {
+                    name: file.name,
+                    size: file.size,
+                    type: file.type,
+                    uploadedAt: new Date().toLocaleString('pt-BR')
+                };
+
+                updateUploadUI(fieldName, file.name);
+                checkFormCompletion();
+            }
+        }
+
+        function updateUploadUI(fieldName, fileName) {
+            const statusId = getStatusElementId(fieldName);
+            const fileNameId = getFileNameElementId(fieldName);
+
+            const statusEl = document.getElementById(statusId);
+            const fileNameEl = document.getElementById(fileNameId);
+
+            if (statusEl && fileNameEl) {
+                const shortName = fileName.length > 30 ? fileName.substring(0, 27) + '...' : fileName;
+                fileNameEl.textContent = '✓ ' + shortName;
+                statusEl.classList.remove('hidden');
+            }
+        }
+
+        function getStatusElementId(fieldName) {
+            const map = {
+                'idFront': 'idStatus',
+                'idBack': 'idStatus',
+                'selfie': 'selfieStatus'
+            };
+            return map[fieldName] || '';
+        }
+
+        function getFileNameElementId(fieldName) {
+            const map = {
+                'idFront': 'idFileName',
+                'idBack': 'idFileName',
+                'selfie': 'selfieFileName'
+            };
+            return map[fieldName] || '';
+        }
+
+        function checkFormCompletion() {
+            const hasIdFront = uploadedFiles.idFront !== null;
+            const hasIdBack = uploadedFiles.idBack !== null;
+            const hasSelfie = uploadedFiles.selfie !== null;
+
+            const submitBtn = document.getElementById('submitBtn');
+            const isComplete = hasIdFront && hasIdBack && hasSelfie;
+
+            submitBtn.disabled = !isComplete;
+
+            if (isComplete) {
+                submitBtn.textContent = '✓ Confirmar envio dos documentos';
+            }
+        }
+
+        function submitDocuments() {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            setTimeout(() => {
+                const uploadData = {
+                    files: uploadedFiles,
+                    submittedAt: new Date().toISOString(),
+                    status: 'analyzing'
+                };
+
+                localStorage.setItem('documentsUploaded', JSON.stringify(uploadData));
+
+                alert('✓ Documentos enviados com sucesso!\n\nSua solicitação foi recebida. A equipe analisará seus documentos em até 3 dias úteis e você receberá uma notificação quando for aprovado.');
+
+                uploadedFiles = { idFront: null, idBack: null, selfie: null };
+                updateDocumentStatusUI(uploadData);
+                updateStatusUI();
+                closeDocumentModal();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirmar envio dos documentos';
+            }, 1500);
+        }
+
+        function logout() {
+            walletScreen.classList.add('hidden');
+            document.getElementById('statusScreen').classList.add('hidden');
+            documentModal.classList.add('hidden');
+            helpModal.classList.add('hidden');
+            bottomNav.classList.add('hidden');
+            loginScreen.classList.remove('hidden');
+            loginScreen.style.animation = 'fadeIn 0.5s ease-out forwards';
+            document.getElementById('emailInput').value = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        documentModal.addEventListener('click', (e) => {
+            if (e.target === documentModal) closeDocumentModal();
+        });
+
+        function showScreen(screen) {
+            const walletScreen = document.getElementById('walletScreen');
+            const statusScreen = document.getElementById('statusScreen');
+            const navHome = document.getElementById('navHome');
+            const navStatus = document.getElementById('navStatus');
+
+            window.scrollTo(0, 0);
+
+            if (screen === 'wallet') {
+                walletScreen.classList.remove('hidden');
+                statusScreen.classList.add('hidden');
+                navHome.classList.add('text-[#FE2C55]');
+                navHome.classList.remove('text-gray-400');
+                navStatus.classList.remove('text-[#FE2C55]');
+                navStatus.classList.add('text-gray-400');
+            } else if (screen === 'status') {
+                walletScreen.classList.add('hidden');
+                statusScreen.classList.remove('hidden');
+                navHome.classList.remove('text-[#FE2C55]');
+                navHome.classList.add('text-gray-400');
+                navStatus.classList.add('text-[#FE2C55]');
+                navStatus.classList.remove('text-gray-400');
+                updateStatusUI();
+            }
+        }
+
+        function updateStatusUI() {
+            const docsStatus = localStorage.getItem('documentsUploaded');
+            if (docsStatus) {
+                const data = JSON.parse(docsStatus);
+                document.getElementById('statusProgress').textContent = '33%';
+                document.getElementById('progressBar').style.width = '33%';
+                document.getElementById('step1Circle').classList.add('bg-green-600');
+                document.getElementById('step1Circle').classList.remove('bg-[#FE2C55]');
+                document.getElementById('step1Circle').innerHTML = '✓';
+                document.getElementById('step1Subtitle').textContent = 'Documentos recebidos';
+                document.getElementById('step1Subtitle').classList.remove('text-[#FE2C55]');
+                document.getElementById('step1Subtitle').classList.add('text-green-600');
+                document.getElementById('step1Line').classList.add('bg-green-600');
+                document.getElementById('step2Circle').classList.add('bg-[#FE2C55]', 'text-white');
+                document.getElementById('step2Circle').classList.remove('bg-gray-300', 'text-gray-600');
+                document.getElementById('step2Title').classList.remove('text-gray-500');
+                document.getElementById('step2Title').classList.add('text-gray-900');
+                document.getElementById('step2Subtitle').classList.remove('text-gray-400');
+                document.getElementById('step2Subtitle').classList.add('text-[#FE2C55]');
+                document.getElementById('statusHistory').textContent = `Documentos enviados em ${new Date(data.submittedAt).toLocaleString('pt-BR')}`;
+
+                if (data.status === 'approved') markAnalysisComplete();
+            }
+        }
+
+        function markAnalysisComplete() {
+            document.getElementById('statusProgress').textContent = '100%';
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('step2Circle').classList.add('bg-green-600');
+            document.getElementById('step2Circle').classList.remove('bg-[#FE2C55]', 'text-white');
+            document.getElementById('step2Circle').innerHTML = '✓';
+            document.getElementById('step2Subtitle').textContent = 'Análise concluída';
+            document.getElementById('step2Subtitle').classList.remove('text-[#FE2C55]');
+            document.getElementById('step2Subtitle').classList.add('text-green-600');
+            document.getElementById('step2Line').classList.add('bg-green-600');
+            document.getElementById('step3Circle').classList.add('bg-green-600');
+            document.getElementById('step3Circle').classList.remove('bg-gray-300', 'text-gray-600');
+            document.getElementById('step3Circle').innerHTML = '✓';
+            document.getElementById('step3Title').classList.remove('text-gray-500');
+            document.getElementById('step3Title').classList.add('text-gray-900');
+            document.getElementById('step3Subtitle').classList.remove('text-gray-400');
+            document.getElementById('step3Subtitle').classList.add('text-green-600');
+            document.getElementById('statusHistory').textContent = 'Parabéns! Sua documentação foi aprovada. Saque liberado.';
+        }
+
+        const helpModal = document.getElementById('helpModal');
+        const helpMessages = document.getElementById('helpMessages');
+        const helpQuickRepliesEl = document.getElementById('helpQuickReplies');
+
+        const helpQA = [
+            {
+                question: 'Quanto tempo leva a validação?',
+                keywords: ['tempo', 'demora', 'prazo', 'dias'],
+                answer: () => 'A equipe oficial analisa todos os documentos em até 3 dias úteis após o envio. Você pode acompanhar o progresso em tempo real na tela de Status.'
+            },
+            {
+                question: 'Por que meu saldo está bloqueado?',
+                keywords: ['bloquead', 'saldo'],
+                answer: () => `Para proteger sua conta, o saldo de ${formatCurrency(balanceData.total)} fica bloqueado até a equipe oficial validar seus documentos. Após a aprovação, o saque é liberado automaticamente.`
+            },
+            {
+                question: 'Quais documentos preciso enviar?',
+                keywords: ['document', 'rg', 'cnh', 'passaporte', 'selfie'],
+                answer: () => 'Você precisa enviar 2 itens: seu documento de identidade (RG, CNH ou passaporte) com frente e verso, e uma selfie segurando o documento.'
+            },
+            {
+                question: 'Meus documentos foram recusados. O que fazer?',
+                keywords: ['recusad', 'rejeitad', 'negad', 'reprovad'],
+                answer: () => 'Reenvie fotos nítidas e bem iluminadas para uma nova análise. Se o problema persistir, nossa equipe entrará em contato por e-mail com mais detalhes.'
+            },
+            {
+                question: 'Posso sacar antes da validação?',
+                keywords: ['sacar antes', 'antes da valida', 'pular'],
+                answer: () => 'Não. Saques e transferências só são liberados após a aprovação dos documentos pela equipe oficial. Não há como pular essa etapa.'
+            },
+            {
+                question: 'Esse processo é seguro?',
+                keywords: ['segur', 'confi', 'dados'],
+                answer: () => 'Sim. A análise segue a política oficial de verificação de identidade e nenhum terceiro tem acesso aos seus documentos. Todo o envio é criptografado.'
+            }
+        ];
+
+        function normalizeText(text) {
+            return text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+        }
+
+        function findHelpAnswer(userText) {
+            const normalized = normalizeText(userText);
+            const match = helpQA.find(item => item.keywords.some(keyword => normalized.includes(normalizeText(keyword))));
+            return match ? match.answer() : 'Não encontrei uma resposta exata para isso. Tente reformular ou escolha uma das opções abaixo.';
+        }
+
+        function renderHelpQuickReplies() {
+            helpQuickRepliesEl.innerHTML = helpQA.map((item, index) =>
+                `<button onclick="askHelpQuickReply(${index})" class="w-full text-left flex-shrink-0 bg-[#ffe9ee] text-[#FE2C55] text-[13px] font-semibold leading-snug px-3.5 py-2.5 rounded-2xl hover:bg-[#ffd7e0] transition">${item.question}</button>`
+            ).join('');
+        }
+
+        function scrollHelpToBottom() {
+            helpMessages.scrollTop = helpMessages.scrollHeight;
+        }
+
+        function addHelpMessage(text, sender) {
+            const wrapper = document.createElement('div');
+            wrapper.className = sender === 'user' ? 'flex justify-end' : 'flex justify-start';
+
+            if (sender === 'user') {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'bg-[#FE2C55] text-white text-sm rounded-2xl rounded-br-sm px-4 py-3 max-w-[80%] leading-relaxed';
+                msgDiv.textContent = text;
+                wrapper.appendChild(msgDiv);
+            } else {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'bg-white text-gray-800 text-sm rounded-2xl rounded-bl-sm px-4 py-3 max-w-[85%] leading-relaxed card-soft';
+
+                const textP = document.createElement('p');
+                textP.textContent = text;
+                msgDiv.appendChild(textP);
+
+                const feedbackRow = document.createElement('div');
+                feedbackRow.className = 'feedback-row flex items-center gap-2 mt-2.5 text-xs text-gray-400';
+                feedbackRow.innerHTML = `Isso ajudou?
+                    <button onclick="rateHelpful(this)" class="w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-sm">👍</button>
+                    <button onclick="rateHelpful(this)" class="w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-sm">👎</button>`;
+                msgDiv.appendChild(feedbackRow);
+
+                wrapper.appendChild(msgDiv);
+            }
+            helpMessages.appendChild(wrapper);
+            scrollHelpToBottom();
+        }
+
+        function rateHelpful(btn) {
+            const row = btn.closest('.feedback-row');
+            if (row) row.textContent = 'Obrigado pelo seu feedback!';
+        }
+
+        function askHelpQuickReply(index) {
+            const item = helpQA[index];
+            addHelpMessage(item.question, 'user');
+            setTimeout(() => addHelpMessage(item.answer(), 'bot'), 500);
+        }
+
+        function sendHelpMessage() {
+            const input = document.getElementById('helpInput');
+            const text = input.value.trim();
+            if (!text) return;
+            addHelpMessage(text, 'user');
+            input.value = '';
+            setTimeout(() => addHelpMessage(findHelpAnswer(text), 'bot'), 500);
+        }
+
+        function openHelpModal() {
+            helpModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            if (!helpMessages.hasChildNodes()) {
+                addHelpMessage('Oi 👋 Sou o assistente automático de suporte. Posso responder dúvidas comuns sobre a validação dos seus documentos e o seu saldo. Escolha um tópico abaixo ou digite sua pergunta.', 'bot');
+            }
+        }
+
+        function closeHelpModal() {
+            helpModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function clearHelpChat() {
+            helpMessages.innerHTML = '';
+            addHelpMessage('Oi 👋 Sou o assistente automático de suporte. Posso responder dúvidas comuns sobre a validação dos seus documentos e o seu saldo. Escolha um tópico abaixo ou digite sua pergunta.', 'bot');
+        }
+
+        renderHelpQuickReplies();
+
+        helpModal.addEventListener('click', (e) => {
+            if (e.target === helpModal) closeHelpModal();
+        });
+
+        window.addEventListener('load', () => {
+            loadPersistedLogin();
+        });
+    </script>
+</body>
+</html>
