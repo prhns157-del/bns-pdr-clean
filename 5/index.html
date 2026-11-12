@@ -203,12 +203,6 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
     <div class="pay-pix-logo"><img src="/5/images/pix-logo.svg" alt="Pix"></div>
   </div>
 
-  <section class="trust-strip" aria-label="Selos de segurança">
-    <img src="/5/images/gov-br.webp" alt="gov.br">
-    <img src="/5/images/receitafederal.png" alt="Receita Federal">
-    <img src="/5/images/bacen.png" alt="Banco Central">
-  </section>
-
   <p class="footer-note">Compra 100% segura. Reembolso garantido em até 7 dias.</p>
 </div>
 
@@ -550,22 +544,6 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 })();
 </script>
 
-<script>
-(function(){
-  var _redirecionado=false;
-  history.pushState(null,null,location.href);
-  window.addEventListener('popstate',function(){
-    var modal=document.getElementById('pixModal');
-    if(modal&&modal.classList.contains('active')){history.pushState(null,null,location.href);return;}
-    if(_redirecionado)return;
-    _redirecionado=true;history.pushState(null,null,location.href);
-    var dest=new URL('../back/index.html',window.location.href);
-    new URLSearchParams(window.location.search).forEach(function(v,k){dest.searchParams.set(k,v);});
-    window.location.href=dest.toString();
-  });
-})();
-</script>
-<script>window.__TTK_HAS_BACKREDIRECT=true;</script>
 <script src="../assets/tracking.js"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"3d04d58e8080411197bd269faa9f7da8","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
