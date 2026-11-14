@@ -81,7 +81,7 @@
     return {
       id: 'taxa_confirmacao_tiktok',
       name: 'Taxa de Confirmacao TikTok',
-      value: (customTaxa && customTaxa > 0) ? customTaxa : 18.47
+      value: (customTaxa && customTaxa > 0) ? customTaxa : 13.92
     };
   }
 
